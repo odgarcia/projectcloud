@@ -1,0 +1,15 @@
+
+    <div class="about">
+        <h3>News</h3>
+        <div ng-controller="NewsFeedCrtl">
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+
+   <span ng-repeat="newsfeed in newsfeeds" style="margin-left:15px; height: 25px;">
+    <img src="{{ newsfeed.url }}" height="150" width="250"/>
+     <a href="#/newsfeed/{{ newsfeed.id }}"> <font color="yellow">{{ newsfeed.title}}...READ MORE</font> </a>
+    </span>
+
+
+            </marquee>
+        </div>
+</div>

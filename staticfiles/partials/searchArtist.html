@@ -1,0 +1,31 @@
+<div class="topstr">
+    <div class="container">
+        <h1 style="color:#ffff00;">Artists</h1>
+        <hr style="border-bottom: solid 1px #ffff00;"/>
+        <div class="searchform"><label>Search by artist: <input ng-model="searchText"></label></div>
+        <ul class="thumbnail-grid">
+            <li class="thumbnail-col" data-ng-repeat="artist in artists | filter:searchText">
+                <figure class="thumbnail thumbnail-blur">
+                    <div class="picture picture-link">
+                        <img src='{{ artist.avatar }}' alt=" " class="img-responsive"
+                             style="width: 150px;height: 150px">
+                        <span class="artistic_name_search">{{ artist.name_artistic }}</span>
+                        <span>{{ artist.name }} {{ artist.last_name }}</span>
+                        <ul class="action">
+                            <li class="action-item" role="button">
+                                <a href="#/view_profile/{{ artist.userId }}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="action-item" role="button">
+                                <a href="#/search_artist/{{ artist.userId }}/pieces">
+                                    <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </figure>
+            </li>
+        </ul>
+    </div>
+</div>

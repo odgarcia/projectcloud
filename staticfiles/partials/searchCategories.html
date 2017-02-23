@@ -1,0 +1,23 @@
+<div class="topstr">
+    <div class="container">
+        <h1 style="color:#ffff00;">Pieces by category</h1>
+        <hr style="border-bottom: solid 1px #ffff00;"/>
+        <div class="searchform"><label>Search by Categories: <input ng-model="searchText"></label></div>
+        <ul class="thumbnail-grid">
+            <li class="thumbnail-col" data-ng-repeat="category in categories | filter:searchText">
+                <figure class="thumbnail thumbnail-blur">
+                    <div class="picture picture-link">
+                        <p>{{ category.name }}</p>
+                        <ul class="action">
+                            <li class="action-item" role="button">
+                                <a href="#/search_category/{{ category.id }}/">
+                                    <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </figure>
+            </li>
+        </ul>
+    </div>
+</div>

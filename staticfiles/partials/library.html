@@ -1,0 +1,88 @@
+<div class="topstr">
+    <div class="container">
+
+        <div class="alert alert-danger" role="alert" ng-if="validationError">
+            <strong>Oops!</strong> {{ mensaje }}
+        </div>
+
+        <h1 style="color: yellow">My Collections</h1>
+
+        <div class="col-md-12" style="color: white">
+
+            <div class="col-md-12" style="height: 10px"></div>
+            <div class="col-md-12">
+                <label style="font-size: 200%" ng-if="isNewCollection" ng-click="toggleIsNewCollection()">
+                    <a href=""><span class="label label-default"
+                                     style="background-color: yellow;color: #1c1b17">New Collection</span></a>
+                </label>
+            </div>
+
+            <div class="col-md-12" style="border-style: solid;border-color: yellow" ng-if="!isNewCollection">
+                <div class="col-md-12" style="height: 20px"></div>
+                <label>New collection name:</label>
+                <input type="text" ng-model="newCollection.name"
+                       style="width: 100%; background-color: #1c1b17;color: white;padding-bottom: 10px">
+                <label style="font-size: 200%" ng-click="saveCollection()">
+                    <a href=""><span class="label label-default"
+                                     style="background-color: yellow;color: #1c1b17">Save</span></a>
+                </label>
+                <label style="font-size: 200%" ng-click="toggleIsNewCollection()">
+                    <a href=""><span class="label label-default"
+                                     style="background-color: yellow;color: #1c1b17">Cancel</span></a>
+                </label>
+            </div>
+            <div class="col-md-12" style="height: 15px"></div>
+
+            <div class="col-md-12" ng-repeat="collection in collections">
+                <div class="col-md-12" style="height: 5px"></div>
+                <div class="col-md-12">
+                    <label style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px; font-size: 20px"
+                           ng-if="!collection.editmode">
+                        {{ collection.fields.name }}
+                    </label>
+                    <input style="width: 75%; background-color: #1c1b17;color: white;padding-bottom: 10px"
+                           type="text" ng-if="collection.editmode" ng-model="collection.newName"/>
+                    <span class="label label-default" ng-if="!collection.editmode"
+                          ng-click="deleteCollection(collection.pk)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a
+                            href="">Delete</a></span>
+                    <span class="label label-default" ng-if="!collection.editmode" ng-click="putSongs(collection)"
+                          play-all="songs"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a href="">Play All</a></span>
+                    <span class="label label-default" ng-if="collection.editmode" ng-click="toogleEditMode(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a
+                            href="">Cancel</a></span>
+                    <span class="label label-default" ng-if="collection.editmode" ng-click="editCollection(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a
+                            href="">Save</a></span>
+                    <span class="label label-default" ng-if="!collection.editmode" ng-click="toogleEditMode(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a
+                            href="">Edit</a></span>
+                    <span class="label label-default" ng-if="collection.expanded && !collection.editmode"
+                          ng-click="collapse(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">
+                        <a href="">Collapse</a>
+                    </span>
+                    <span class="label label-default" ng-if="!collection.expanded && !collection.editmode"
+                          ng-click="loadPieces(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">
+                        <a href="">Expand</a>
+                    </span>
+                </div>
+                <div class="col-md-12" ng-repeat="piece in collection.pieces" ng-if="hasPieces(collection)">
+                    <div class="col-md-12" style="height: 15px"></div>
+                    <label style="font-size: 15px">
+                        {{ piece.fields.name }}
+                    </label>
+                    <span class="label label-default"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Delete</span>
+                    <span class="label label-default"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Play</span>
+                </div>
+                <div class="col-md-12" style="height: 5px"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

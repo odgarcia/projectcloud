@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="row">
+        <div class="catalog-header banner-header">
+            <div class="banner-header-bg" style="background-image: url('{{ piece.fields.image_cover }}'); background-position: center center;">
+            </div>
+            <div class="catalog-headings">
+                <div class="banner-headings clearfix">
+                    <figure class="thumbnail thumbnail-bordered-blur thumbnail-rounded">
+                        <div class="picture overlay-hidden">
+                            <img class="picture-img" alt="" height="160" src="{{ piece.fields.image_cover }}" width="160"></div>
+                    </figure>
+                    <h1 class="heading-1 ellipsis">{{ piece.fields.name }}</h1>
+                    <h2 class="heading-4 ellipsis">{{ piece.fields.artist_name}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="catalog-content">
+            <div class = "title-logo">
+                <p>{{ piece.fields.name }}<span> By {{ piece.fields.artist_name }}</span></p>
+            </div>
+            <p class="lyric-piece" ng-if="hasLyrics">{{ piece.fields.lyrics }}</p>
+            <div class="btn-group">
+                <button class="btn btn-default btn-lg" ng-click="togglePieceInput()"><span class="glyphicon glyphicon-pencil"></span>Edit Piece</button>
+                <button ng-if="!hasLyrics" class="btn btn-default btn-lg btn-freesounds" ng-click="toggleLyricsInput()"><span class="glyphicon icon-microphone"></span>Add lyrics</button>
+            </div>
+
+            <div class="form_piece_edit" ng-if="viewPieceInput">
+                <div class="form-group">
+                    <label ng-if="lyricsError">
+                        {{ lyricsErrorMessage }}
+                    </label>
+                    <label ng-if="nameError">
+                        {{ nameErrorMessage }}
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="name">Title</label>
+                    <input type="text" class="form-control" ng-model="piece.fields.name"/>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="sel" class="form-control" ng-model="piece.fields.category" ng-options="obj.pk as obj.fields.name for obj in categories"></select>
+                </div>
+                <div class="form-group">
+                    <label for="lyric">Lyric</label>
+                    <textarea rows="10" class="form-control" ng-model="piece.fields.lyrics"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="savePiece(piece)" class="btn btn-success">Save</button>
+                    <button ng-click="discardPiece()" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+            <!-- Add lyrics -->
+            <div class="form_piece_lyrics" ng-if="viewLyricsInput">
+                <label ng-if="lyricsError">{{ lyricsErrorMessage }}</label>
+                <div class="form-group">
+                    <label>Lyric</label>
+                    <textarea rows="10" class="form-control" ng-model="piece.fields.lyrics"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="saveLyrics(piece)" class="btn btn-success">Save</button>
+                    <button ng-click="discardLyrics()" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+            <!-- Comments -->
+            <div class="comments">
+                <form name="formComment">
+                    <div ng-if="!error"class="alert alert-success" role="alert">{{ mensaje }}</div>
+                    <div ng-if="error"class="alert alert-warning" role="alert">{{ mensaje }}</div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder = "Email" class="form-control" ng-model="form.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <textarea rows="10" name="text" class="form-control" placeholder = "Your comment here" ng-model="form.text" required></textarea>
+                    </div>
+                    <button class="btn btn-success" ng-click="saveComment(piece)">Save comment</button>
+                </form>
+                <div class = "title-logo">
+                    <p>Comme<span>nts </span></p>
+                </div>
+                <ul class="comments-inner">
+                    <li data-ng-repeat="comment in comments">
+                        <ul class="comment"><label>Email </label> {{ comment.fields.email }}
+                            <li class="text-comment"><label>Comment:</label> {{ comment.fields.text }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
