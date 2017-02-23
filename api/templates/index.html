@@ -1,0 +1,198 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+{% load staticfiles %}
+{% load bootstrap3 %}
+<html ng-app="freesounds">
+<head>
+    <link rel="shortcut icon" type="image/png" href="http://image.flaticon.com/icons/png/512/78/78049.png">
+    <title>Free Sounds | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Custom Theme files -->
+    <link href="../../static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+     <!-- Custom Theme files -->
+    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+    <link href="../../static/css/profile.css" rel="stylesheet" type="text/css">
+    <link href="../../static/css/profile2.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .float-message {
+            position: fixed;
+            top: 1%;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        /*noinspection CssUnusedSymbol*/
+        .form-group label.error {
+            color: #FB3A3A;
+            display: inline-block;
+            text-align: right;
+            width: 100%;
+        }
+    </style>
+
+    <script src="{% static "lib/jquery.js" %}"></script>
+    <!--webfonts-->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700|Six+Caps'
+          rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+
+    <script type="text/javascript">
+        function clear() {
+            document.getElementById("register-success").innerHTML = "";
+            document.getElementById("register-fail").innerHTML = "";
+            document.getElementById("login-success").innerHTML = "";
+            document.getElementById("login-fail").innerHTML = "";
+            document.getElementById("nombre").innerHTML = "";
+            document.getElementById("apellido").innerHTML = "";
+            document.getElementById("email").innerHTML = "";
+            document.getElementById("password").innerHTML = "";
+            document.getElementById("username-login").innerHTML = "";
+            document.getElementById("password-login").innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+<!--banner-->
+<div class="banner-1" id="home">
+    <div class="header-top">
+        <div class="header-bottom">
+            <div class="fixed-header">
+                <div class="logo">
+                    <h1><a href="#/pieces">Free<span>Sounds</span></a></h1>
+                </div>
+                <div class="hd-lt" ng-controller="UserCrtl">
+                    <span class="menu"> </span>
+                    <div class="top-menu">
+                        <nav class="cl-effect-21">
+                            <ul>
+                                <li><a class="active" href="#/pieces">Home</a></li>
+                                <li><a href="#/about">About</a></li>
+                                <li ng-hide="isLoggedIn()"><a id="link_sign_up" href="#" target="_self" ng-click="openModal()">Login</a></li>
+                                <li ng-hide="isLoggedIn()"><a id="link_login" href="#" target="_self" ng-click="openModal()">Sign Up</a></li>
+                                <li ng-show="isLoggedIn()"><a href="#/view_profile/{{ user.id }}" id="id_editar"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li ng-show="isLoggedIn()"><a href="#/addPiece">Add Piece</a></li>
+                                <li ng-show="isLoggedIn()"><a href="#/addNews">Share news</a></li>
+                                <li ng-show="isLoggedIn()"><a href="#/library" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
+                                <li ng-show="isLoggedIn()"><a href="#" event.preventDefault(); ng-click="logout()">Logout</a></li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <h6>Follows Us :</h6>
+                        <ul class="f-icons">
+                            <li><a href="#" class="facebook"> </a></li>
+                            <li><a href="#" class="p"> </a></li>
+                            <li><a href="#" class="twitter"> </a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ng-include src="'{% static 'partials/newsfeedSlider.html' %}'"></ng-include>
+<div ng-view></div>
+<ng-include src="'{% static 'partials/audioPlayer.html' %}'"></ng-include>
+
+<div class="footer">
+    <div class="container">
+        <div class="col-md-4 footer-left">
+            <h3>More Info</h3>
+            <li>01-8000-agile-republic</li>
+        </div>
+        <div class="col-md-4 footer-left">
+            <h3>Contact Us</h3>
+            <p>Yell loudly</p>
+        </div>
+        <div class="col-md-4 social">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="#" class="facebook"> </a></li>
+                <li><a href="#" class="p"> </a></li>
+                <li><a href="#" class="twitter"> </a></li>
+                <li><a href="#" class="goog"> </a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="footer-bottom">
+            <p>Copyrights © 2016 FreeSounds. All rights reserved | Design by <a
+                    href="http://w3layouts.com/">W3layouts</a></p>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+{% bootstrap_javascript %}
+<script src="{% static "lib/angular/angular.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-route.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-resource.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-cookies.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-messages.js" %}"></script>
+<script src="{% static "lib/ui-bootstrap-tpls-2.2.0.min.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+<!-- Controllers -->
+<script src="{% static "js/controllers/userController.js" %}"></script>
+<script src="{% static "js/controllers/profileController.js" %}"></script>
+<script src="{% static "js/controllers/piecesController.js" %}"></script>
+<script src="{% static "js/controllers/collectionController.js" %}"></script>
+<script src="{% static "js/controllers/pieceDetailController.js" %}"></script>
+<script src="{% static "js/controllers/addPieceController.js" %}"></script>
+<script src="{% static "js/controllers/artistController.js" %}"></script>
+<script src="{% static "js/controllers/audioPlayerController.js" %}"></script>
+<script src="{% static "js/controllers/libraryController.js" %}"></script>
+<<<<<<< HEAD
+<script src="{% static "js/controllers/categoryController.js" %}"></script>
+=======
+<script src="{% static "js/controllers/newsFeedController.js" %}"></script>
+>>>>>>> d3ce691798856fb0249b2f96226055e527d11c70
+<!-- Services -->
+<script src="{% static "js/services/S3UploadService.js" %}"></script>
+<script src="{% static "js/services/piecesService.js" %}"></script>
+<script src="{% static "js/services/collectionService.js" %}"></script>
+<script src="{% static "js/services/userService.js" %}"></script>
+<script src="{% static "js/services/profileService.js" %}"></script>
+<script src="{% static "js/services/categoryService.js" %}"></script>
+<!-- Other -->
+
+<script src="{% static "js/services/artistService.js" %}"></script>
+<script src="{% static "js/csrfToken.js" %}"></script>
+
+<script src="{% static "bower_components/angular-soundmanager2/dist/angular-soundmanager2.js" %}"></script>
+<script src="{% static "js/moment.js" %}"></script>
+<script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
+<script type="text/javascript">
+    $("span.menu").click(function () {
+        $(".top-menu").slideToggle("slow", function () {
+            // Animation complete.
+        });
+    });
+    $(document).ready(function () {
+        var navoffeset = $(".header-bottom").offset().top;
+        $(window).scroll(function () {
+            var scrollpos = $(window).scrollTop();
+            if (scrollpos >= navoffeset) {
+                $(".header-bottom").addClass("fixed");
+            } else {
+                $(".header-bottom").removeClass("fixed");
+            }
+        });
+    });
+</script>
+</body>
+</html>

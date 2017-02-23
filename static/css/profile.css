@@ -1,0 +1,289 @@
+.catalog-header {
+    padding: 24px 32px;
+    position: relative
+}
+
+.catalog-header.extended .catalog-headings {
+    height: auto;
+    min-height: 215px
+}
+
+.catalog-header.extended .infos {
+    bottom: 0;
+    left: 0;
+    position: relative
+}
+
+.catalog-header .thumbnail {
+    float: left;
+    height: 200px;
+    width: 200px
+}
+
+.catalog-header .infos {
+    bottom: 24px;
+    border-top: 1px solid #EFEFF2;
+    left: 252px;
+    padding: 12px 0;
+    position: absolute;
+    right: 40px
+}
+
+.catalog-header .infos.episode {
+    margin-top: 12px;
+    position: initial
+}
+
+@media (max-width: 1210px) {
+    .catalog-header .infos {
+        bottom: 0;
+        left: 0;
+        position: relative
+    }
+}
+
+.catalog-header .list-actions {
+    margin-left: -10px
+}
+
+.catalog-header .list-actions > li {
+    float: left;
+    margin-left: 10px
+}
+
+.catalog-header .list-infos {
+    font-size: 11px
+}
+
+.catalog-header .list-infos .heard-icon {
+    border-radius: 50%;
+    display: block;
+    height: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 10px
+}
+
+.catalog-header .list-infos .heard-circle {
+    border: 1px solid #007FEB;
+    border-radius: 50%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.catalog-header .list-infos .heard-status {
+    background-color: #007FEB;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0
+}
+
+.catalog-header .list-infos > li {
+    border-left: 1px solid #EFEFF2;
+    color: #92929D;
+    float: left;
+    line-height: 16px;
+    margin-left: 15px;
+    padding-left: 15px;
+    text-align: center
+}
+
+.catalog-header .list-infos > li:first-child {
+    border-left: 0 none;
+    margin-left: 0;
+    padding-left: 0
+}
+
+.catalog-header .list-infos strong {
+    display: block
+}
+
+.catalog-header .list-infos .info-link {
+    color: #92929D
+}
+
+.catalog-headings {
+    box-sizing: border-box;
+    margin-left: 230px
+}
+
+@media (max-width: 1210px) {
+    .catalog-headings {
+        height: auto;
+        min-height: 215px
+    }
+}
+
+.catalog-headings .heading-1-sub {
+    margin-bottom: 0;
+    padding-bottom: 12px
+}
+
+.catalog-headings .ellipsis {
+    max-width: 100%
+}
+
+.banner-header-bg {
+    height: 230px;
+    position: relative;
+    background-position: center center;
+    background-size: cover
+}
+
+.banner-header-bg:after {
+    background-color: #191922;
+    bottom: 0;
+    content: "";
+    left: 0;
+    opacity: .6;
+    top: 0;
+    position: absolute;
+    right: 0
+}
+
+.banner-header-bg .thumbnail-sticker {
+    bottom: 0;
+    float: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 4
+}
+
+.banner-header {
+    padding: 0 !important
+}
+
+.banner-header .catalog-headings {
+    height: 110px;
+    margin: 0 auto 0;
+    position: relative
+}
+
+@media (max-width: 1210px) {
+    .banner-header .catalog-headings {
+        min-height: 110px
+    }
+}
+
+.banner-header .banner-headings {
+    left: 50%;
+    position: absolute;
+    top: -80px;
+    width: 500px;
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%)
+}
+
+.banner-header .banner-headings .thumbnail {
+    box-sizing: border-box;
+    height: 160px;
+    margin-right: 30px;
+    width: 160px
+}
+
+.banner-header .banner-headings .heading-1 {
+    color: #FFFFFF;
+    margin-bottom: 0;
+    margin-top: 5px
+}
+
+.banner-header .banner-headings .heading-4 {
+    color: #DEDEE3;
+    font-style: italic
+}
+
+.banner-header .banner-headings .status:before {
+    content: "-";
+    padding: 0 5px
+}
+
+.banner-header .list-actions {
+    bottom: 24px;
+    left: 190px;
+    position: absolute
+}
+
+.banner-header .list-actions .icon-options {
+    color: #32323D
+}
+
+.banner-header .list-social {
+    top: 16px;
+    position: absolute;
+    right: 40px
+}
+
+.banner-header .list-social li {
+    float: left;
+    line-height: 20px;
+    padding: 0 10px
+}
+
+.banner-header .list-social li + li {
+    border-left: 1px solid rgba(194, 194, 202, 0.6)
+}
+
+.banner-header .list-social li.disabled .icon, .banner-header .list-social li.disabled .icon:hover {
+    color: rgba(194, 194, 202, 0.4);
+    cursor: default
+}
+
+.banner-header .list-social .icon {
+    color: #C2C2CA
+}
+
+.banner-header .list-social .icon:hover.icon-facebook {
+    color: #3B5998
+}
+
+.banner-header .list-social .icon:hover.icon-twitter {
+    color: #37ABDE
+}
+
+.banner-header.has-banner .catalog-headings {
+    height: auto;
+    margin-bottom: 20px
+}
+
+.banner-header.has-banner .banner-headings {
+    text-align: center;
+    padding: 24px 0;
+    position: relative;
+    top: auto
+}
+
+.banner-header.has-banner .heading-1 {
+    color: #32323D;
+    margin-top: 0
+}
+
+.banner-header.has-banner .heading-4 {
+    color: #92929D
+}
+
+.banner-header.has-banner .actions-container {
+    float: right;
+    left: -50%;
+    margin-top: 16px;
+    position: relative
+}
+
+.banner-header.has-banner .list-actions {
+    bottom: auto;
+    left: 50%;
+    position: relative
+}
+
+.banner-header.has-banner .banner-header-bg:after {
+    opacity: 0
+}
+
