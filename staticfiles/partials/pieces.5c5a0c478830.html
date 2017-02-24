@@ -1,0 +1,94 @@
+<div class="topstr">
+    <div class="container col-md-12">
+        <div class="container col-md-2"
+             style="border-left-style: solid; border-left-color: yellow; border-left-width: 2px">
+            <ul class="menu-left">
+                <li><a href="#search_artist/">Search by artist</a></li>
+                <li><a href="#categories/">Categories</a></li>
+            </ul>
+        </div>
+        <div class="container col-md-8">
+            <ul class="thumbnail-grid">
+                <li class="thumbnail-col"  data-ng-repeat="piece in songs track by $index">
+                    <figure class="thumbnail thumbnail-blur">
+                        <div class="picture picture-link">
+                            <img src='{{ piece.image_cover }}' alt=" " class="img-responsive"
+                                 style="width: 150px;height: 150px">
+                            <span class="artistic_name_search"><a
+                                    ng-click="viewDetail(piece.id)">{{ piece.title }}</a></span>
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>{{ piece.likes }}
+                            <ul class="action">
+                                <li class="action-item" role="button">
+                                    <a href="" music-player="play" add-song="piece">
+                                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li class="action-item" role="button">
+                                    <a href="">
+                                        <span class="glyphicon glyphicon-thumbs-up" ng-if="!piece.upvoted"
+                                              ng-click="upVote(piece)" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-thumbs-down" ng-if="piece.upvoted"
+                                              ng-click="downVote(piece)" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li class="action-item" role="button">
+                                    <a href="">
+                                        <span class="glyphicon glyphicon-plus" role="button" data-toggle="modal"
+                                              data-target="#myModal_{{ piece.id }}" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </figure>
+                    <!-- Modal -->
+                    <div np-app="api" class="modal fade" class="myModal" id="myModal_{{ piece.id }}" role="dialog">
+                        <div class="modal-dialog modal-sm modal-piece">
+                            <div class="modal-content">
+                                <div class="modal-body" style=" overflow: auto">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <div class = "modal-logo">
+                                        <p>SONG <span>OPTIONS</span></p>
+                                    </div>
+                                    <h3 class="modal-title modal-text"><a ng-click="viewDetail(piece.id)">{{ piece.title }}</a></h3>
+                                    <h4 class="modal-title modal-text"><a ng-click="viewDetail(piece.id)">{{ piece.artist }}</a></h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item playing-song">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            <a ng-click="viewDetail(piece.id)">More information</a>
+                                        </li>
+
+                                        <li class="list-group-item playing-song">
+                                            <span class="glyphicon glyphicon-plus-sign"></span> Add to collection:
+                                            <select ng-model="selectedCollection"
+                                                    ng-change="addToCollection(piece, selectedCollection)"
+                                                    ng-options="collection.fields.name for collection in availableCollections">
+                                            </select>
+                                        </li>
+                                        <li class="list-group-item playing-song">
+                                            <a ng-href="{{ piece.url }}" target="_blank" download="MyGoogleLogo">
+                                                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                                                Download
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item action-item playing-song" role="button">
+                                            <a href="" music-player add-song="piece">
+                                                <span class="glyphicon glyphicon-plus-sign"></span> Add to playlist
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="container col-md-2"
+             style="border-left-style: solid; border-left-color: yellow; border-left-width: 2px">
+            <h4>Hot pieces</h4>
+            <p ng-repeat="r in rank | orderBy : '-fields.likes_number'">
+                <b>{{ r.fields.piece_name }}</b> {{ r.fields.likes_number }} likes
+            </p>
+        </div>
+    </div>
+</div>

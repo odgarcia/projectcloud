@@ -1,0 +1,49 @@
+  <div class="container">
+      <div class="about">
+          <h3>Share news</h3>
+        <form  >
+                    <div class="contact-bottom"><br>
+                        <h4>Title</h4><input type="text" ng-model="newItem.title" required><br><br>
+                        <h4>Content</h4>
+
+                    <textarea rows="4" cols="50" ng-model="newItem.content">
+
+                    </textarea>
+                        <button type="file" ngf-select="addImage($files)" ngf-multiple="false" class="btn btn-warning">
+                            Select an image
+                        </button>
+                        <input type="text" ng-model="newItem.url[0].name" ng-show=" newItem.url.length > 0" disabled><br>
+                        <button type="submit"  ng-click="add()"class="btn btn-warning">
+                           Share
+                        </button>
+                        </div>
+        </form>
+          <div class="alert alert-danger" ng-show=" Errors.length > 0" ng-repeat="err in Errors">
+            <strong>Danger!</strong> {{ err }}
+          </div>
+               <div ng-show="Files.length > 0">
+                    <div ng-repeat="file in Files">
+                        File:
+                        <div>
+                            {{file.name}} {{file.$error}} {{file.$errorParam}}
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{file.Progress}}%;">
+                                {{file.Progress | number:0}}%
+                            </div>
+                        </div>
+                        <div class="alert alert-info" role="alert" ng-show="file.Progress == 100 && !file.Success">Processing, please wait...</div>
+                        <div class="alert alert-success" role="alert" ng-show="file.Success && upload.success">your content has been shared !</div>
+                    </div>
+                    <div class="alert alert-danger" role="alert" ng-show="errorMsg.length > 0">
+                        Oooops we had trouble uploading the file. Please refresh the page and try again.
+                        <p>If the problem persits please supply us with the following details</p>
+                        <p>{{errorMsg}}</p>
+                    </div>
+                    <div>{{Error}}</div>
+
+
+                            </div>
+
+
+   </div> </div>
